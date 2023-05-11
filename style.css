@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 50px;
+    height: auto;
+}
+
+#shuttle {
+    position: absolute;
+    bottom: 0;
+    left: 50vw;
+}
+
+#laser {
+    display: none;
+    position: absolute;
+    left: 50vw;
+    top: 85vh;
+}
+
+#laser.visible {
+    display: block;
+}
+
+.invader {
+    position: absolute;
+    left: 50vw;
+    top: 2vh;
+}
