@@ -3,8 +3,8 @@ let pos_laser = 85;
 let pos_laserXY;
 let flag_shot = false;
 let refreshIntervalId;
-let audioLaser = new Audio("sf_laser_13.mp3"); //sf_laser_13  10957.mp3
-let audioExplosion = new Audio("explosion.mp3");
+let audioLaser = new Audio("assets/sf_laser_13.mp3"); //sf_laser_13  10957.mp3
+let audioExplosion = new Audio("assets/explosion.mp3");
 let invaderID;
 let invaderXY;
 let shottedInvaderID = null;
@@ -27,7 +27,7 @@ refreshIntervalId3 = setInterval(() => {
 
 refreshIntervalId2 = setInterval(() => {
     invaderID= Math.round(Math.random()*27182818285);
-    document.querySelector('body').insertAdjacentHTML('afterbegin',`<img src="green_invader.png" class="invader" id="invader${invaderID}">`);
+    document.querySelector('body').insertAdjacentHTML('afterbegin',`<img src="assets/green_invader.png" class="invader" id="invader${invaderID}">`);
     document.getElementById(`invader${invaderID}`).style.left= `${Math.round(Math.random()*96)}vw`;
     document.getElementById(`invader${invaderID}`).style.top= '2vh';
 },timeInvaderAppear);
