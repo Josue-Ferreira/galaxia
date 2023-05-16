@@ -9,6 +9,7 @@ let flag_shot = false;
 let refreshIntervalId1, refreshIntervalId2, refreshIntervalId3;
 let audioLaser = new Audio("assets/sf_laser_13.mp3"); //sf_laser_13  10957.mp3
 let shottedInvader= false;
+let shottedShuttle= false;
 let timeInvaderAppear = 2000;
 let timeInvaderDown = 500;
 let allInvaders= [];
@@ -19,6 +20,10 @@ refreshIntervalId3 = setInterval(() => {
     if(allInvaders.length != 0){
         allInvaders.forEach(invader => {
             canGoDown = invader.goDown();
+            shottedShuttle = invader.isShotted(document.getElementById('shuttle').getBoundingClientRect());
+            if(shottedShuttle){
+                life--;
+            }
             if(!canGoDown)
                 allInvaders.shift();
         });   

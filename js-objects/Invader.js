@@ -10,7 +10,7 @@ class Invader {
         this.src="assets/green_invader.png";
         this.initPosLeft= Math.round(Math.random()*90+5);
         this.initPosTop= 2;
-        this.hitBoxHeight= 20;
+        this.hitBoxHeight= 30;
         this.hitBoxWidth= 30;
         this.init();
     }
