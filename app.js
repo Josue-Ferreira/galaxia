@@ -8,7 +8,7 @@ let refreshIntervalId1, refreshIntervalId2, refreshIntervalId3;
 let audioLaser = new Audio("assets/sf_laser_13.mp3"); //sf_laser_13  10957.mp3
 let audioExplosion = new Audio("assets/explosion.mp3");
 let invaderXY;
-let shottedInvader;
+let shottedInvader= false;
 let timeInvaderAppear = 2000;
 let timeInvaderDown = 500;
 let tmpInvaderPos;
@@ -16,6 +16,7 @@ let allInvaders= [];
 let canGoDown;
 let deleteFirstInvader= false;
 let tmp;
+let i=0;
 
 refreshIntervalId3 = setInterval(() => {
     // const allInvaders= document.querySelectorAll('.invader');
@@ -62,25 +63,45 @@ refreshIntervalId1 = setInterval(function() {
     //             shottedInvaderID= invader.getAttribute('id');
     //         }
     // }); //console.log([invader.getAttribute('id'), invader.getBoundingClientRect().top, invader.getBoundingClientRect().left]));//invadersPos.push([invader.attributes('id'), invader.style.bottom]));
-    
-    allInvaders.forEach(invader => {
-        shottedInvader= invader.isShotted(pos_laserXY);
-    });
 
     // MANQUE DELETE INVADER dans allInvaders
-    
-    if(flag_shot  && shottedInvader){
-        console.log('shot');
-        // audioExplosion.play();
-        pos_laser= 85;
-        flag_shot= false;
-        document.getElementById('laser').classList.remove('visible');
-        // document.getElementById(shottedInvaderID).remove();
+    // if(flag_shot  && shottedInvader){
+    if(pos_laser>0 && flag_shot === true){
+        i=0;
+        while(!shottedInvader && i < allInvaders.length){ 
+            shottedInvader= allInvaders[i].isShotted(pos_laserXY);
+            if(shottedInvader){
+                allInvaders.splice(i,1);
+                pos_laser= 85;
+                flag_shot= false;
+                document.getElementById('laser').classList.remove('visible');
+                console.log('shot');
+            }
+            i++;
+        }
         shottedInvader= false;
-    }
-    else if(pos_laser>0 && flag_shot === true) {
         pos_laser -= 5;
+        // allInvaders.forEach((invader,i) => {
+        //     shottedInvader= invader.isShotted(pos_laserXY);
+        //     if(shottedInvader){
+        //         allInvaders.splice(i,1);
+        //         pos_laser= 85;
+        //         flag_shot= false;
+        //         document.getElementById('laser').classList.remove('visible');
+        //         console.log('shot');
+        //     }    
+        // });
+        // console.log('shot');
+        // audioExplosion.play();
+        // pos_laser= 85;
+        // flag_shot= false;
+        // document.getElementById('laser').classList.remove('visible');
+        // document.getElementById(shottedInvaderID).remove();
+        // shottedInvader= false;
     }
+    // else if(pos_laser>0 && flag_shot === true) {
+    //     pos_laser -= 5;
+    // }
     else {
         pos_laser= 85;
         flag_shot= false;
