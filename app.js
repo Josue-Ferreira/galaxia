@@ -1,5 +1,7 @@
 import Invader from './js-objects/Invader.js'
 
+let score= 0;
+let life= 3;
 let pos_shuttle = 50;
 let pos_laser = 85;
 let pos_laserXY;
@@ -38,6 +40,7 @@ refreshIntervalId1 = setInterval(function() {
             if(shottedInvader){
                 allInvaders.splice(i,1);
                 flag_shot= false;
+                score += 1;
             }
             i++;
         }
@@ -49,6 +52,11 @@ refreshIntervalId1 = setInterval(function() {
         flag_shot= false;
         document.getElementById('laser').classList.remove('visible');
     }
+    document.getElementById('life').innerHTML="";
+    for(let n=0; n<life; n++)
+        document.getElementById('life').insertAdjacentHTML('beforeend','<i class="fa-solid fa-heart"></i>');
+    document.getElementById('score').innerHTML="";
+    document.getElementById('score').append(`SCORE : ${score}`);
 },10);
 
 document.addEventListener('keydown', (event) => {

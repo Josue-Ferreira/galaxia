@@ -31,3 +31,20 @@ img {
     left: 50vw;
     top: 2vh;
 }
+
+.infos {
+    position: absolute;
+    left: 80vw;
+    top: 5vh;
+    display: flex;
+    align-items: center;
+}
+
+#life {
+    color: red;
+}
+
+#score {
+    font-family: 'Press Start 2P', cursive;
+    margin-left: 30px;
+}
