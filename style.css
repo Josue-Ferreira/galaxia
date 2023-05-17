@@ -48,3 +48,33 @@ img {
     font-family: 'Press Start 2P', cursive;
     margin-left: 30px;
 }
+
+@keyframes animloseLife {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.1;
+    }
+}
+
+.loselife {
+    animation-name: animloseLife;
+    animation-duration: 0.2s;
+    animation-iteration-count: 5;
+}
+
+#gameover {
+    display: none;
+    font-size: 5em;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#gameover.enable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 25vw;
+    top: 25vh;
+}

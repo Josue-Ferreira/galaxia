@@ -21,8 +21,17 @@ refreshIntervalId3 = setInterval(() => {
         allInvaders.forEach(invader => {
             canGoDown = invader.goDown();
             shottedShuttle = invader.isShotted(document.getElementById('shuttle').getBoundingClientRect());
-            if(shottedShuttle){
+            if(shottedShuttle && life > 0){
                 life--;
+                document.getElementById('shuttle').classList.add('loselife');
+                setTimeout(() => document.getElementById('shuttle').classList.remove('loselife'), 200);
+            }
+            else if(life == 0){
+                clearInterval(refreshIntervalId1);
+                clearInterval(refreshIntervalId2);
+                clearInterval(refreshIntervalId3);
+                document.getElementById('life').innerHTML="";
+                document.getElementById('gameover').classList.add('enable');
             }
             if(!canGoDown)
                 allInvaders.shift();
