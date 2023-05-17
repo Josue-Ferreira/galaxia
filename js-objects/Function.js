@@ -6,25 +6,35 @@ let pos_laserXY;
 let shottedInvader= false;
 let pos_laser = 85;
 
+// HTML elements 
+const elementLife = document.getElementById('life');
+const elementScore = document.getElementById('score');
+const elementShuttle = document.getElementById('shuttle');
+const elementLaser = document.getElementById('laser');
+const elementGameOver = document.getElementById('gameover');
+
 const invaderAttack = (allInvaders, life, refreshIntervalId1, refreshIntervalId2, refreshIntervalId3) => {
     if(allInvaders.length != 0){
-        allInvaders.forEach(invader => {
+        allInvaders.forEach((invader, i) => {
             canGoDown = invader.goDown();
-            shottedShuttle = invader.isShotted(document.getElementById('shuttle').getBoundingClientRect());
+            shottedShuttle = invader.isShotted(elementShuttle.getBoundingClientRect());
             if(shottedShuttle && life.value > 0){
                 life.value--;
-                document.getElementById('shuttle').classList.add('loselife');
-                setTimeout(() => document.getElementById('shuttle').classList.remove('loselife'), 200);
+                elementLife.innerHTML="";
+                for(let n=0; n<life.value; n++)
+                    elementLife.insertAdjacentHTML('beforeend','<i class="fa-solid fa-heart"></i>');
+                elementShuttle.classList.add('loselife');
+                setTimeout(() => elementShuttle.classList.remove('loselife'), 200);
             }
             else if(life.value == 0){
                 clearInterval(refreshIntervalId1);
                 clearInterval(refreshIntervalId2);
                 clearInterval(refreshIntervalId3);
-                document.getElementById('life').innerHTML="";
-                document.getElementById('gameover').classList.add('enable');
+                elementLife.innerHTML="";
+                elementGameOver.classList.add('enable');
             }
             if(!canGoDown)
-                allInvaders.shift();
+                allInvaders.splice(i,1);
         });   
     }
 }
@@ -75,8 +85,8 @@ const resetSetIntervals = (refreshIntervalId1, refreshIntervalId2, refreshInterv
 }
 
 const shot = (flag_shot, allInvaders, score) => {
-    document.getElementById('laser').style.top = `${pos_laser}vh`;
-    pos_laserXY= document.getElementById('laser').getBoundingClientRect();
+    elementLaser.style.top = `${pos_laser}vh`;
+    pos_laserXY= elementLaser.getBoundingClientRect();
     if(pos_laser>0 && flag_shot === true){
         let i=0;
         while(!shottedInvader && i < allInvaders.length){ 
@@ -85,6 +95,8 @@ const shot = (flag_shot, allInvaders, score) => {
                 allInvaders.splice(i,1);
                 flag_shot= false;
                 score.value += 1;
+                elementScore.innerHTML="";
+                elementScore.append(`SCORE : ${score.value}`);
             }
             i++;
         }
@@ -94,7 +106,7 @@ const shot = (flag_shot, allInvaders, score) => {
     else {
         pos_laser= 85;
         flag_shot= false;
-        document.getElementById('laser').classList.remove('visible');
+        elementLaser.classList.remove('visible');
     }
     return flag_shot;
 }

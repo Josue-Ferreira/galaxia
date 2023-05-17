@@ -30,7 +30,7 @@ class Invader {
 
     goDown(){
         const tmpInvaderPos= parseInt(this.invaderHtmlElement.style.top);
-        if(tmpInvaderPos < 96){
+        if(tmpInvaderPos < 94){
             this.invaderHtmlElement.style.top= `${tmpInvaderPos + 2}vh`;
             return true;
         }
