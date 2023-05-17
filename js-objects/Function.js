@@ -12,6 +12,7 @@ const elementScore = document.getElementById('score');
 const elementShuttle = document.getElementById('shuttle');
 const elementLaser = document.getElementById('laser');
 const elementGameOver = document.getElementById('gameover');
+const elementVelocity = document.getElementById('velocity');
 
 const invaderAttack = (allInvaders, life, refreshIntervalId1, refreshIntervalId2, refreshIntervalId3) => {
     if(allInvaders.length != 0){
@@ -42,38 +43,45 @@ const invaderAttack = (allInvaders, life, refreshIntervalId1, refreshIntervalId2
 const setVelocity = (velocity, score, timeInvader, refreshIntervalId1, refreshIntervalId2, refreshIntervalId3, allInvaders, life) => {
     switch(velocity){
         case 1: if(score.value > 5){
-                    timeInvader.appear -= 500;
+                    timeInvader.appear -= 1000;
                     timeInvader.down -= 100;
-                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life);
                     velocity++;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
         case 2: if(score.value > 10){
-                    timeInvader.appear -= 250;
+                    timeInvader.appear -= 500;
                     timeInvader.down -= 50;
-                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life);
                     velocity++;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
         case 3: if(score.value > 20){
-                    timeInvader.appear -= 100;
+                    timeInvader.appear -= 250;
                     timeInvader.down -= 50;
-                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life);
                     velocity++;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
         case 4: if(score.value > 30){
+                    timeInvader.appear -= 200;
+                    timeInvader.down -= 50;
+                    velocity++;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
+                }
+                break;
+        case 5: if(score.value > 40){
                     timeInvader.appear -= 100;
                     timeInvader.down -= 50;
-                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life);
                     velocity++;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
     }
     return velocity;
 }
 
-const resetSetIntervals = (refreshIntervalId1, refreshIntervalId2, refreshIntervalId3, timeInvader, allInvaders, life) => {
+const resetSetIntervals = (refreshIntervalId1, refreshIntervalId2, refreshIntervalId3, timeInvader, allInvaders, life,velocity) => {
     clearInterval(refreshIntervalId2);
     refreshIntervalId2 = setInterval(() => {
         allInvaders.push(new Invader());
@@ -82,6 +90,8 @@ const resetSetIntervals = (refreshIntervalId1, refreshIntervalId2, refreshInterv
     refreshIntervalId3 = setInterval(() => {
         invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
     },timeInvader.down);
+    elementVelocity.innerHTML="";
+    elementVelocity.append(`Velocity : x${velocity}`);
 }
 
 const shot = (flag_shot, allInvaders, score) => {

@@ -16,11 +16,13 @@ const elementShuttle = document.getElementById('shuttle');
 const elementLaser = document.getElementById('laser');
 const elementLife = document.getElementById('life');
 const elementScore = document.getElementById('score');
+const elementVelocity = document.getElementById('velocity');
 
 // Initialise life and score
 for(let n=0; n<life.value; n++)
     elementLife.insertAdjacentHTML('beforeend','<i class="fa-solid fa-heart"></i>');
 elementScore.append(`SCORE : ${score.value}`);
+elementVelocity.append(`Velocity : x${velocity}`);
 
 // Tasks
 refreshIntervalId3 = setInterval(() => {

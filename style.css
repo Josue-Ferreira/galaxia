@@ -34,10 +34,11 @@ img {
 
 .infos {
     position: absolute;
-    left: 80vw;
+    left: 60vw;
     top: 5vh;
     display: flex;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 #life {
@@ -45,8 +46,7 @@ img {
 }
 
 #score {
-    font-family: 'Press Start 2P', cursive;
-    margin-left: 30px;
+    margin: 0px 30px;
 }
 
 @keyframes animloseLife {
