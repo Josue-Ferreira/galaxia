@@ -1,19 +1,15 @@
 import Invader from './js-objects/Invader.js'
-import { invaderAttack, setVelocity } from './js-objects/Function.js'
+import { invaderAttack, setVelocity, shot } from './js-objects/Function.js'
 
-let score= 0;
+let score= {value: 0};
 let life= {value: 3};
 let pos_shuttle = 50;
-let pos_laser = 85;
-let pos_laserXY;
 let flag_shot = false;
 let refreshIntervalId1, refreshIntervalId2, refreshIntervalId3;
 let audioLaser = new Audio("assets/sf_laser_13.mp3"); //sf_laser_13  10957.mp3
-let shottedInvader= false;
 let timeInvader= {appear: 2000, down: 500};
 let velocity= 1;
 let allInvaders= [];
-let i=0;
 
 refreshIntervalId3 = setInterval(() => {
     invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
@@ -25,34 +21,13 @@ refreshIntervalId2 = setInterval(() => {
 
 
 refreshIntervalId1 = setInterval(function() {
-    document.getElementById('laser').style.top = `${pos_laser}vh`;
-    pos_laserXY= document.getElementById('laser').getBoundingClientRect();
-    if(pos_laser>0 && flag_shot === true){
-        i=0;
-        while(!shottedInvader && i < allInvaders.length){ 
-            shottedInvader= allInvaders[i].isShotted(pos_laserXY);
-            if(shottedInvader){
-                allInvaders.splice(i,1);
-                flag_shot= false;
-                score += 1;
-            }
-            i++;
-        }
-        shottedInvader= false;
-        pos_laser -= 5;
-    }
-    else {
-        pos_laser= 85;
-        flag_shot= false;
-        document.getElementById('laser').classList.remove('visible');
-    }
+    flag_shot = shot(flag_shot,allInvaders,score);
     document.getElementById('life').innerHTML="";
     for(let n=0; n<life.value; n++)
         document.getElementById('life').insertAdjacentHTML('beforeend','<i class="fa-solid fa-heart"></i>');
     document.getElementById('score').innerHTML="";
-    document.getElementById('score').append(`SCORE : ${score}`);
+    document.getElementById('score').append(`SCORE : ${score.value}`);
     velocity = setVelocity(velocity,score,timeInvader,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,allInvaders,life);
-    console.log(timeInvader)
 },10);
 
 document.addEventListener('keydown', (event) => {
