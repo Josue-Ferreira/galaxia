@@ -10,19 +10,18 @@ let flag_shot = false;
 let refreshIntervalId1, refreshIntervalId2, refreshIntervalId3;
 let audioLaser = new Audio("assets/sf_laser_13.mp3"); //sf_laser_13  10957.mp3
 let shottedInvader= false;
-let timeInvaderAppear = 2000;
-let timeInvaderDown = 500;
+let timeInvader= {appear: 2000, down: 500};
 let velocity= 1;
 let allInvaders= [];
 let i=0;
 
 refreshIntervalId3 = setInterval(() => {
     invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
-},timeInvaderDown);
+},timeInvader.down);
 
 refreshIntervalId2 = setInterval(() => {
     allInvaders.push(new Invader());
-},timeInvaderAppear);
+},timeInvader.appear);
 
 
 refreshIntervalId1 = setInterval(function() {
@@ -52,7 +51,8 @@ refreshIntervalId1 = setInterval(function() {
         document.getElementById('life').insertAdjacentHTML('beforeend','<i class="fa-solid fa-heart"></i>');
     document.getElementById('score').innerHTML="";
     document.getElementById('score').append(`SCORE : ${score}`);
-    velocity = setVelocity(velocity,score,timeInvaderAppear,timeInvaderDown,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,allInvaders,life);
+    velocity = setVelocity(velocity,score,timeInvader,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,allInvaders,life);
+    console.log(timeInvader)
 },10);
 
 document.addEventListener('keydown', (event) => {

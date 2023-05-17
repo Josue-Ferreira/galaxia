@@ -26,58 +26,42 @@ const invaderAttack = (allInvaders, life, refreshIntervalId1, refreshIntervalId2
     }
 }
 
-const setVelocity = (velocity, score, timeInvaderAppear, timeInvaderDown, refreshIntervalId1, refreshIntervalId2, refreshIntervalId3, allInvaders, life) => {
+const setVelocity = (velocity, score, timeInvader, refreshIntervalId1, refreshIntervalId2, refreshIntervalId3, allInvaders, life) => {
     switch(velocity){
         case 1: if(score > 5){
-                    timeInvaderAppear = 1500;
-                    timeInvaderDown = 400;
-                    console.log(timeInvaderAppear)
-                    console.log(timeInvaderDown)
-                    clearInterval(refreshIntervalId2);
-                    refreshIntervalId2 = setInterval(() => {
-                        allInvaders.push(new Invader());
-                    },timeInvaderAppear);
-                    clearInterval(refreshIntervalId3);
-                    refreshIntervalId3 = setInterval(() => {
-                        invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
-                    },timeInvaderDown);
+                    timeInvader.appear -= 500;
+                    timeInvader.down -= 100;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life);
                     velocity++;
                 }
                 break;
         case 2: if(score > 10){
-                    timeInvaderAppear = 1000;
-                    timeInvaderDown = 300;
-                    console.log(timeInvaderAppear)
-                    console.log(timeInvaderDown)
-                    clearInterval(refreshIntervalId2);
-                    refreshIntervalId2 = setInterval(() => {
-                        allInvaders.push(new Invader());
-                    },timeInvaderAppear);
-                    clearInterval(refreshIntervalId3);
-                    refreshIntervalId3 = setInterval(() => {
-                        invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
-                    },timeInvaderDown);
+                    timeInvader.appear -= 250;
+                    timeInvader.down -= 50;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life);
                     velocity++;
                 }
                 break;
         case 3: if(score > 20){
-                    timeInvaderAppear = 800;
-                    timeInvaderDown = 250;
-                    console.log(timeInvaderAppear)
-                    console.log(timeInvaderDown)
-                    clearInterval(refreshIntervalId2);
-                    refreshIntervalId2 = setInterval(() => {
-                        allInvaders.push(new Invader());
-                    },timeInvaderAppear);
-                    clearInterval(refreshIntervalId3);
-                    refreshIntervalId3 = setInterval(() => {
-                        invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
-                    },timeInvaderDown);
+                    timeInvader.appear -= 100;
+                    timeInvader.down -= 50;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life);
                     velocity++;
                 }
                 break;
     }
     return velocity;
+}
+
+const resetSetIntervals = (refreshIntervalId1, refreshIntervalId2, refreshIntervalId3, timeInvader, allInvaders, life) => {
+    clearInterval(refreshIntervalId2);
+    refreshIntervalId2 = setInterval(() => {
+        allInvaders.push(new Invader());
+    },timeInvader.appear);
+    clearInterval(refreshIntervalId3);
+    refreshIntervalId3 = setInterval(() => {
+        invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
+    },timeInvader.down);
 }
 
 export {invaderAttack, setVelocity};
