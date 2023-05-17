@@ -36,7 +36,6 @@ class Invader {
         }
         else {
             this.invaderHtmlElement.remove();
-            console.log(this.id)
             return false;
         }
     }

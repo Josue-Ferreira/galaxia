@@ -52,6 +52,13 @@ const setVelocity = (velocity, score, timeInvader, refreshIntervalId1, refreshIn
                     velocity++;
                 }
                 break;
+        case 4: if(score.value > 30){
+                    timeInvader.appear -= 100;
+                    timeInvader.down -= 50;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life);
+                    velocity++;
+                }
+                break;
     }
     return velocity;
 }

@@ -19,7 +19,6 @@ refreshIntervalId2 = setInterval(() => {
     allInvaders.push(new Invader());
 },timeInvader.appear);
 
-
 refreshIntervalId1 = setInterval(function() {
     flag_shot = shot(flag_shot,allInvaders,score);
     document.getElementById('life').innerHTML="";
