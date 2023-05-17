@@ -1,4 +1,5 @@
 import Invader from './js-objects/Invader.js'
+import { invaderAttack } from './js-objects/Function.js'
 
 let score= 0;
 let life= 3;
@@ -9,34 +10,36 @@ let flag_shot = false;
 let refreshIntervalId1, refreshIntervalId2, refreshIntervalId3;
 let audioLaser = new Audio("assets/sf_laser_13.mp3"); //sf_laser_13  10957.mp3
 let shottedInvader= false;
-let shottedShuttle= false;
+// let shottedShuttle= false;
 let timeInvaderAppear = 2000;
 let timeInvaderDown = 500;
+let velocity= 1;
 let allInvaders= [];
-let canGoDown;
+// let canGoDown;
 let i=0;
 
 refreshIntervalId3 = setInterval(() => {
-    if(allInvaders.length != 0){
-        allInvaders.forEach(invader => {
-            canGoDown = invader.goDown();
-            shottedShuttle = invader.isShotted(document.getElementById('shuttle').getBoundingClientRect());
-            if(shottedShuttle && life > 0){
-                life--;
-                document.getElementById('shuttle').classList.add('loselife');
-                setTimeout(() => document.getElementById('shuttle').classList.remove('loselife'), 200);
-            }
-            else if(life == 0){
-                clearInterval(refreshIntervalId1);
-                clearInterval(refreshIntervalId2);
-                clearInterval(refreshIntervalId3);
-                document.getElementById('life').innerHTML="";
-                document.getElementById('gameover').classList.add('enable');
-            }
-            if(!canGoDown)
-                allInvaders.shift();
-        });   
-    }
+    // if(allInvaders.length != 0){
+    //     allInvaders.forEach(invader => {
+    //         canGoDown = invader.goDown();
+    //         shottedShuttle = invader.isShotted(document.getElementById('shuttle').getBoundingClientRect());
+    //         if(shottedShuttle && life > 0){
+    //             life--;
+    //             document.getElementById('shuttle').classList.add('loselife');
+    //             setTimeout(() => document.getElementById('shuttle').classList.remove('loselife'), 200);
+    //         }
+    //         else if(life == 0){
+    //             clearInterval(refreshIntervalId1);
+    //             clearInterval(refreshIntervalId2);
+    //             clearInterval(refreshIntervalId3);
+    //             document.getElementById('life').innerHTML="";
+    //             document.getElementById('gameover').classList.add('enable');
+    //         }
+    //         if(!canGoDown)
+    //             allInvaders.shift();
+    //     });   
+    // }
+    life = invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
 },timeInvaderDown);
 
 refreshIntervalId2 = setInterval(() => {
@@ -71,6 +74,24 @@ refreshIntervalId1 = setInterval(function() {
         document.getElementById('life').insertAdjacentHTML('beforeend','<i class="fa-solid fa-heart"></i>');
     document.getElementById('score').innerHTML="";
     document.getElementById('score').append(`SCORE : ${score}`);
+    switch(velocity){
+        case 1: if(score > 10){
+                    timeInvaderAppear = 1500;
+                    timeInvaderDown = 450;
+                    console.log(timeInvaderAppear)
+                    console.log(timeInvaderDown)
+                    clearInterval(refreshIntervalId2);
+                    refreshIntervalId2 = setInterval(() => {
+                        allInvaders.push(new Invader());
+                    },timeInvaderAppear);
+                    clearInterval(refreshIntervalId3);
+                    refreshIntervalId3 = setInterval(() => {
+                        life = invaderAttack(allInvaders,life,refreshIntervalId1,refreshIntervalId2,refreshIntervalId3);
+                    },timeInvaderDown);
+                    velocity++;
+                }
+                break;
+    }
 },10);
 
 document.addEventListener('keydown', (event) => {
