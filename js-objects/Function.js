@@ -42,37 +42,37 @@ const invaderAttack = (allInvaders, life, refreshIntervalId1, refreshIntervalId2
 
 const setVelocity = (velocity, score, timeInvader, refreshIntervalId1, refreshIntervalId2, refreshIntervalId3, allInvaders, life) => {
     switch(velocity){
-        case 1: if(score.value > 5){
-                    timeInvader.appear -= 1000;
-                    timeInvader.down -= 100;
-                    velocity++;
-                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
-                }
-                break;
-        case 2: if(score.value > 10){
+        case 1: if(score.value > 20){
                     timeInvader.appear -= 500;
-                    timeInvader.down -= 50;
+                    timeInvader.down -= 10;
                     velocity++;
                     resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
-        case 3: if(score.value > 20){
-                    timeInvader.appear -= 250;
-                    timeInvader.down -= 50;
-                    velocity++;
-                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
-                }
-                break;
-        case 4: if(score.value > 30){
+        case 2: if(score.value > 100){
                     timeInvader.appear -= 200;
-                    timeInvader.down -= 50;
+                    timeInvader.down -= 10;
                     velocity++;
                     resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
-        case 5: if(score.value > 40){
+        case 3: if(score.value > 1000){
                     timeInvader.appear -= 100;
-                    timeInvader.down -= 50;
+                    timeInvader.down -= 10;
+                    velocity++;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
+                }
+                break;
+        case 4: if(score.value > 5000){
+                    timeInvader.appear -= 100;
+                    timeInvader.down -= 10;
+                    velocity++;
+                    resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
+                }
+                break;
+        case 5: if(score.value > 10000){
+                    timeInvader.appear -= 100;
+                    timeInvader.down -= 10;
                     velocity++;
                     resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }

@@ -23,7 +23,8 @@ class Invader {
 
     init(){
         const randomInvader = Math.floor(Math.random()*this.invaderProbs.length);
-        switch(randomInvader){
+        console.log(randomInvader)
+        switch(this.invaderProbs[randomInvader]){
             case 1:     this.src= greenInvader;
                         this.scoreShot= 1;
                         break;
@@ -37,6 +38,7 @@ class Invader {
                         this.scoreShot= 10;
                         break;
             default:    this.src= greenInvader;
+                        this.scoreShot= 1;
                         break;
         }
         document.querySelector('body').insertAdjacentHTML('afterbegin',`<img src=${this.src} class="invader" id="invader${this.id}">`);
