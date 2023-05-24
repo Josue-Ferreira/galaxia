@@ -104,7 +104,7 @@ const shot = (flag_shot, allInvaders, score) => {
             if(shottedInvader){
                 allInvaders.splice(i,1);
                 flag_shot= false;
-                score.value += 1;
+                score.value += shottedInvader;
                 elementScore.innerHTML="";
                 elementScore.append(`SCORE : ${score.value}`);
             }
