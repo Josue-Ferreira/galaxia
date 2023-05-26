@@ -56,21 +56,21 @@ const setVelocity = (velocity, score, timeInvader, refreshIntervalId1, refreshIn
                     resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
-        case 3: if(score.value > 1000){
+        case 3: if(score.value > 250){
                     timeInvader.appear -= 100;
                     timeInvader.down -= 10;
                     velocity++;
                     resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
-        case 4: if(score.value > 5000){
+        case 4: if(score.value > 500){
                     timeInvader.appear -= 100;
                     timeInvader.down -= 10;
                     velocity++;
                     resetSetIntervals(refreshIntervalId1,refreshIntervalId2,refreshIntervalId3,timeInvader,allInvaders,life,velocity);
                 }
                 break;
-        case 5: if(score.value > 10000){
+        case 5: if(score.value > 1000){
                     timeInvader.appear -= 100;
                     timeInvader.down -= 10;
                     velocity++;

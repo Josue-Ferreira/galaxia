@@ -8,7 +8,7 @@ class Invader {
     invaderHtmlElement;
     posX;
     posY;
-    invaderProbs = [1,1,1,2,2,2,3,3,4,4];
+    invaderProbs = [1,1,1,1,2,2,2,3,3,4];
     scoreShot;
 
     constructor(){
