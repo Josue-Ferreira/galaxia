@@ -1,8 +1,8 @@
-let audioExplosion = new Audio("/public/explosion.mp3");
-const greenInvader = "/public/green_invader.png";
-const orangeInvader = "/public/orange_invader.png";
-const brownInvader = "/public/brown_invader.png";
-const yellowInvader = "/public/yellow_invader.png";
+let audioExplosion = new Audio("public/explosion.mp3");
+const greenInvader = "public/green_invader.png";
+const orangeInvader = "public/orange_invader.png";
+const brownInvader = "public/brown_invader.png";
+const yellowInvader = "public/yellow_invader.png";
 
 class Invader {
     invaderHtmlElement;
