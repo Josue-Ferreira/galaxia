@@ -1,8 +1,8 @@
-let audioExplosion = new Audio("assets/explosion.mp3");
-const greenInvader = "../assets/green_invader.png";
-const orangeInvader = "../assets/orange_invader.png";
-const brownInvader = "../assets/brown_invader.png";
-const yellowInvader = "../assets/yellow_invader.png";
+let audioExplosion = new Audio("/public/explosion.mp3");
+const greenInvader = "/public/green_invader.png";
+const orangeInvader = "/public/orange_invader.png";
+const brownInvader = "/public/brown_invader.png";
+const yellowInvader = "/public/yellow_invader.png";
 
 class Invader {
     invaderHtmlElement;
@@ -23,7 +23,6 @@ class Invader {
 
     init(){
         const randomInvader = Math.floor(Math.random()*this.invaderProbs.length);
-        console.log(randomInvader)
         switch(this.invaderProbs[randomInvader]){
             case 1:     this.src= greenInvader;
                         this.scoreShot= 1;

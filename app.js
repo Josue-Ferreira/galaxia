@@ -6,7 +6,7 @@ let life = {value: 3};
 let pos_shuttle = 50;
 let flag_shot = false;
 let refreshIntervalId1, refreshIntervalId2, refreshIntervalId3;
-let audioLaser = new Audio("assets/sf_laser_13.mp3"); //sf_laser_13  10957.mp3
+let audioLaser = new Audio("/public/sf_laser_13.mp3"); //sf_laser_13  10957.mp3
 let timeInvader= {appear: 2000, down: 500};
 let velocity= 1;
 let allInvaders= [];
