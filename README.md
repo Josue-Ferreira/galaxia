@@ -2,4 +2,4 @@
 
 JS Vanilla Invaders Game
 
-![Example View](./assets/game_example.png)
+![Example View](./public/game_example.png)
